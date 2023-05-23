@@ -1,0 +1,12 @@
+.counterButton{
+
+    font-family: Impact,'Arial Narrow Bold', sans-serif;
+    font-size: 20px;
+    width: 100px;
+    color: darkred;
+    padding: 15px;
+    border-radius: 20px;
+    border-color: lightcoral;
+    border-width: 4px;
+    margin: 30px;
+}
