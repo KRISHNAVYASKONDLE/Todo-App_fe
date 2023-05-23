@@ -1,0 +1,16 @@
+
+.count{
+
+    font-size:50px;
+    color: Darkgreen;
+ 
+}
+
+.ResetButton{
+    border: 3px solid palegreen; 
+    background-color: cadetblue;
+    border-radius: 12%;
+    font-size: 30px;
+    color:black;
+    padding: 0.7%;
+}
