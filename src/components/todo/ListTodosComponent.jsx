@@ -16,7 +16,9 @@ export default function ListTodosComponent() {
 
     function refreshtodos() {
 
-        todoapiservicelink(username).then(response => { setTodos(response.data) })
+        todoapiservicelink(username).then(response => {
+            setTodos(response.data)
+        })
             .catch(error => console.log(error))
     }
 
@@ -42,6 +44,7 @@ export default function ListTodosComponent() {
                             <th>descripton</th>
                             <th>is done ?</th>
                             <th>Target Date</th>
+                            <th>Modify</th>
                             <th>Delete</th>
                         </tr>
                     </thead>
@@ -59,10 +62,14 @@ export default function ListTodosComponent() {
                                         </tr>
                                     )
                                 }
+
                             )
+
+
                         }
                     </tbody>
                 </table>
+                <div className="btn btn-primary m-3 center" onClick={() => navigatetodopage(-1)}>Add todo</div>
             </div>
 
         </div>
