@@ -1,11 +1,4 @@
-import axios from "axios"
-
-
-const apiclient=axios.create(
-    {
-        baseURL:'http://localhost:8080'
-    }
-)
+import { apiclient } from "./ApiClient"
 
 export const todoapiservicelink=(uname)=>apiclient.get(`/users/${uname}`)
 export const deleteapiservicelink=(username,id)=>apiclient.delete(`/users/${username}/todos/${id}`)

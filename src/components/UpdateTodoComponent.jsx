@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuth } from "./todo/security/AuthContext"
-import { updatetodoapiservicelink, updateapilink, createapilink } from "./todo/TodoApiService"
+import { updatetodoapiservicelink, updateapilink, createapilink } from "./todo/api/TodoApiService"
 import { useParams } from "react-router-dom"
 import { Formik, Field, Form, ErrorMessage } from "formik"
 import { useNavigate } from "react-router-dom"
@@ -21,7 +21,7 @@ export default function UpdateTodoComponent() {
     function gettodo() {
         if (id !== -1) {
             updatetodoapiservicelink(username, id).then(response => {
-                response.log("response of get id data ia" + response)
+                // response.log("response of get id data ia" + response)
                 setDescription(response.data.description)
                 setTargetDate(response.data.targetDate)
             }).catch(error => console.log(error))

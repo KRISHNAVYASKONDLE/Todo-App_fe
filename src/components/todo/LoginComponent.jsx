@@ -32,9 +32,8 @@ function LoginComponent() {
         SetPassword(event.target.value)
     }
 
-    function displayCorrespondingMessage() {
-        if (authContext.login(username, password)) {
-
+    async function displayCorrespondingMessage() {
+        if (await authContext.login(username, password)) {
             navigate(`/welcome/${username}`)
         }
         else {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { todoapiservicelink, deleteapiservicelink } from "./TodoApiService"
+import { todoapiservicelink, deleteapiservicelink } from "./api/TodoApiService"
 import { useAuth } from "./security/AuthContext"
 import { useNavigate } from "react-router-dom"
 export default function ListTodosComponent() {
@@ -17,6 +17,7 @@ export default function ListTodosComponent() {
     function refreshtodos() {
 
         todoapiservicelink(username).then(response => {
+            console.log('response for todolist ' + response)
             setTodos(response.data)
         })
             .catch(error => console.log(error))
