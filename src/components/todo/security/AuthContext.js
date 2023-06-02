@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { apiclient } from "../api/ApiClient";
-import { executebasicauth } from "../api/HelloworldApiService";
+import { executebasicauth,executebasicjwtauth } from "../api/AuthenticationApiService";
+
 import { ErrorMessage } from "formik";
 export const Authcontext=createContext()
 
@@ -19,22 +20,22 @@ export default function AuthProvider({children})
 
     async function login(username, password)
     {
-        const baToken='Basic '+  window.btoa(username+':'+password)
-
+        // const baToken='Basic '+  window.btoa(username+':'+password)
         try{  
-                const response= await executebasicauth(baToken)
-
-                if(response.status==200)   
-                {       
-                    console.log(response)
+            const response= await executebasicjwtauth(username,password)
+            
+            if(response.status==200)   
+            {       
+                    const jwtToken='Bearer '+ response.data.token;
+                    // console.log(response)
                     setAuthenticated(true)
                     setUsername(username)            
-                    setToken(baToken)
-                    console.log(baToken)
+                    // setToken(baToken)
+                    // console.log(baToken)
                     apiclient.interceptors.request.use( 
                         config => {
-                        console.log('hey enternig header')
-                        config.headers["Authorization"] = baToken;
+                        // console.log('hey enternig header')
+                        config.headers["Authorization"] = jwtToken;
                         return config;
                       },
                       error=>{
@@ -57,6 +58,46 @@ export default function AuthProvider({children})
            }           
             
     }   
+    // async function login(username, password)
+    // {
+    //     const baToken='Basic '+  window.btoa(username+':'+password)
+
+    //     try{  
+    //             const response= await executebasicauth(baToken)
+
+    //             if(response.status==200)   
+    //             {       
+    //                 console.log(response)
+    //                 setAuthenticated(true)
+    //                 setUsername(username)            
+    //                 setToken(baToken)
+    //                 console.log(baToken)
+    //                 apiclient.interceptors.request.use( 
+    //                     config => {
+    //                     console.log('hey enternig header')
+    //                     config.headers["Authorization"] = baToken;
+    //                     return config;
+    //                   },
+    //                   error=>{
+    //                     return Promise.reject(error)
+    //                   }
+    //                   );
+    //                 return true
+    //             }          
+    //             else{
+    //                 console.log('not suces')
+    //                 logout()
+    //                 return false
+    //             }  
+                
+    //        } catch(error)
+    //        {
+    //         console.log('wrong token')
+    //         logout()
+    //         return false
+    //        }           
+            
+    // }   
     function logout()
     {
         setToken(null)

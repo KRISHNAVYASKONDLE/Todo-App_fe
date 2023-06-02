@@ -4,11 +4,5 @@ export const helloworldparamapilink=(name)=>apiclient.get(`/hello-world/path-var
 
 export const todogetlistlink=(uname)=>apiclient.get(`/users/${uname}`)
 
-export const executebasicauth=(token)=>apiclient.get(`/basicauth`
-,{
-        headers:{
-                Authorization:token
-        }
-}
-)
+// export const executebasicauth=(token)=>apiclient.get(`/basicauth`)
         
